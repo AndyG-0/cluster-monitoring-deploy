@@ -20,10 +20,7 @@ pipeline {
         stage('Execute Make') {
             steps {
                 script {
-                    sh 'cd ./cluster-monitoring/'
-                    sh 'ls -l'
-                    sh 'make vendor'
-                    sh 'make'
+                    sh 'cd ./cluster-monitoring/ && ls -l && make vendor && make'
                 }
             }
         }
