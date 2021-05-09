@@ -21,6 +21,7 @@ pipeline {
         stage('Execute Make') {
             steps {
                 script {
+                    sh 'ls -l'
                     sh 'make vendor'
                     sh 'make'
                 }
