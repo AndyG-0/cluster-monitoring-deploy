@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: prometheus-k8s-db-prometheus-k8s-0-pv
+  name: prometheus
   labels:
-    nfs: prometheus-k8s-db-prometheus-k8s-0
+    nfs: prometheus
   namespace: monitoring
 spec:
   capacity:
@@ -12,7 +12,7 @@ spec:
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
-  #storageClassName: slow
+  storageClassName: slow
   nfs:
     path: /media/mybook/k8sNFS/prometheus/
     server: 192.168.1.142

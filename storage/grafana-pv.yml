@@ -1,19 +1,20 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: grafana-storage-pv
+  name: grafana
   labels:
-    nfs: grafana-storage
+    nfs: grafana
   namespace: monitoring
 spec:
   capacity:
-    storage: 1Gi
+    storage: 20Gi
   volumeMode: Filesystem
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
-  #storageClassName: slow
+  storageClassName: slow
+  mountOptions:
+    - nfsvers=4.1
   nfs:
     path: /media/pi/Elements/k8sNFS/grafana/
     server: 192.168.1.142
-    
