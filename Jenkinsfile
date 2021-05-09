@@ -18,14 +18,6 @@ pipeline {
                 }
             }
         }
-        stage('Copy vars file') {
-            steps {
-                script {
-                    echo 'Copy secrets file ...'
-                    sh 'scp -F /var/lib/jenkins/.ssh/ pi@192.168.1.142:/media/mybook/cluster-monitoring-config/vars.jsonnet ./vars.jsonnet'
-                }
-            }
-        }
         stage('Execute Make') {
             steps {
                 script {
