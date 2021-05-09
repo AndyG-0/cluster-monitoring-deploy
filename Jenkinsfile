@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Copy vars file') {
+        stage('Clone repo') {
             steps {
                 script {
                     echo 'Clone repo ...'
