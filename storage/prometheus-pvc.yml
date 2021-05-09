@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: prometheus-k8s-db-prometheus-k8s-0
+  namespace: monitoring
+spec:
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 20Gi
+  storageClassName: slow
+  selector:
+    matchLabels:
+      nfs: "prometheus-k8s-db-prometheus-k8s-0"
