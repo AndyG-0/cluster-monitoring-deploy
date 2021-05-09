@@ -18,6 +18,22 @@ pipeline {
                 }
             }
         }
+        stage('Copy vars file') {
+            steps {
+                script {
+                    echo 'Copy secrets file ...'
+                    sh 'scp -F /var/lib/jenkins/.ssh/ pi@192.168.1.142:/media/mybook/cluster-monitoring-config/vars.jsonnet ./vars.jsonnet'
+                }
+            }
+        }
+        stage('Execute Make') {
+            steps {
+                script {
+                    sh 'make vendor'
+                    sh 'make'
+                }
+            }
+        }
         stage('Deploy to k3s') {
             when {
                 expression {
@@ -32,8 +48,6 @@ pipeline {
             }
             steps {
                     echo 'Deploying using helm...'
-                    sh 'make vendor'
-                    sh 'make'
                     sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f manifests/setup/'
                     sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f manifests/'
                     sh 'sleep 5'
