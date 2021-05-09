@@ -6,7 +6,6 @@ pipeline {
                 script {
                     echo 'Clone repo ...'
                     sh 'git clone https://github.com/carlosedp/cluster-monitoring.git'
-                    sh 'cd cluster-monitoring'
                 }
             }
         }
@@ -14,13 +13,14 @@ pipeline {
             steps {
                 script {
                     echo 'Copy secrets file ...'
-                    sh 'scp -F /var/lib/jenkins/.ssh/ pi@192.168.1.142:/media/mybook/cluster-monitoring-config/vars.jsonnet ./vars.jsonnet'
+                    sh 'scp -F /var/lib/jenkins/.ssh/ pi@192.168.1.142:/media/mybook/cluster-monitoring-config/vars.jsonnet ./cluster-monitoring/vars.jsonnet'
                 }
             }
         }
         stage('Execute Make') {
             steps {
                 script {
+                    sh 'cd ./cluster-monitoring/'
                     sh 'ls -l'
                     sh 'make vendor'
                     sh 'make'
@@ -41,6 +41,7 @@ pipeline {
             }
             steps {
                     echo 'Deploying using helm...'
+                    sh 'ls -l'
                     sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f manifests/setup/'
                     sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f manifests/'
                     sh 'sleep 5'
