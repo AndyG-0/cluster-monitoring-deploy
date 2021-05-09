@@ -39,10 +39,10 @@ pipeline {
             steps {
                     echo 'Deploying using kubectl apply...'
                     sh 'ls -l'
-                    sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f manifests/setup/'
-                    sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f manifests/'
+                    sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f cluster-monitoring/manifests/setup/'
+                    sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f cluster-monitoring/manifests/'
                     sh 'sleep 5'
-                    sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f manifests/'
+                    sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f cluster-monitoring/manifests/'
             }
         }
     }
