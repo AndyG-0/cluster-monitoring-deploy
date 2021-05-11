@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     echo 'Copy secrets file ...'
-                    sh 'cd ./ingress-fix/ && cp -r * ../cluster-monitoring/manifests/ && cd ..'
+                    sh 'cd ./ingress-fix/ && cp -r * ../cluster-monitoring/manifests/ && cd .. && ls -l ./cluster-monitoring/manifests/'
                 }
             }
         }
