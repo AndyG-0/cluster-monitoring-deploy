@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     echo 'Copy secrets file ...'
-                    sh 'cd ./ingress-fix/ && cp -rf * ../cluster-monitoring/manifests/ && cd .. && ls -l ./cluster-monitoring/manifests/'
+                    sh 'cd ./ingress-fix/ && cp -rf * ../cluster-monitoring/manifests/ && cd .. && ls -l ./cluster-monitoring/manifests/ && cat ./cluster-monitoring/manifests/ingress-grafana.yaml'
                 }
             }
         }
