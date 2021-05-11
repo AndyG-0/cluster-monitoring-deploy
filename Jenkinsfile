@@ -41,12 +41,6 @@ pipeline {
                     env.BRANCH_NAME == 'master'
                 }
             }
-            agent {
-                docker {
-                    image 'registry-192.168.1.38.nip.io/homeassistant/helm-kubectl:latest'
-                    args '-v /var/lib/jenkins/config:/var/lib/jenkins/config'
-                }
-            }
             steps {
                     echo 'Deploying using kubectl apply...'
                     sh 'ls -l'
