@@ -12,6 +12,14 @@ pipeline {
                 }
             }
         }
+        stage('Copy ingress file fixes') {
+            steps {
+                script {
+                    echo 'Copy secrets file ...'
+                    sh 'cp ./ingress-fix/ ./cluster-monitoring/manifests/'
+                }
+            }
+        }
         stage('Copy vars file') {
             steps {
                 script {
