@@ -43,12 +43,11 @@ pipeline {
             }
             steps {
                     echo 'Deploying using kubectl apply...'
-                    sh 'cd ./cluster-monitoring/'
                     sh 'ls -l'
-                    sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f ./manifests/setup/'
-                    sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f ./manifests/'
+                    sh 'export KUBECONFIG=/var/lib/jenkins/config && cd ./cluster-monitoring/ && kubectl apply -f ./manifests/setup/'
+                    sh 'export KUBECONFIG=/var/lib/jenkins/config && cd ./cluster-monitoring/ && kubectl apply -f ./manifests/'
                     sh 'sleep 5'
-                    sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f ./manifests/'
+                    sh 'export KUBECONFIG=/var/lib/jenkins/config && cd ./cluster-monitoring/ && kubectl apply -f ./manifests/'
             }
         }
     }
