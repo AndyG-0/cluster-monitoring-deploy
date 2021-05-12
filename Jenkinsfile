@@ -37,7 +37,7 @@ pipeline {
             steps {
                     echo 'Deploying using kubectl apply...'
                     sh 'ls -l'
-                    sh 'export KUBECONFIG=/var/lib/jenkins/config && cd ./cluster-monitoring/ && make vendor && make && kubectl apply -f ./manifests/setup/ && kubectl apply -f ./manifests/ && sleep 5 && kubectl apply -f ./manifests/'
+                    sh 'export KUBECONFIG=/var/lib/jenkins/config && cd ./cluster-monitoring/ && cat vars.jsonnet && make vendor && make && kubectl apply -f ./manifests/setup/ && kubectl apply -f ./manifests/ && sleep 5 && kubectl apply -f ./manifests/'
             }
         }
     }
