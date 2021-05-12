@@ -10,7 +10,7 @@ spec:
     storage: 20Gi
   volumeMode: Filesystem
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   storageClassName: slow
   nfs:
