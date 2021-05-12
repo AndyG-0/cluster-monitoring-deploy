@@ -4,4 +4,4 @@ Deploys k3s cluster monitoring using repo: [https://github.com/carlosedp/cluster
 
 ## Notes
 
-
+* pv's must be created before running.
