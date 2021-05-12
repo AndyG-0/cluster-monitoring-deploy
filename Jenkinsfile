@@ -16,14 +16,14 @@ pipeline {
             steps {
                 script {
                     echo 'Copy secrets file ...'
-                    sh 'cd ./ingress-fix/ && cp -rf * ../cluster-monitoring/manifests/ && cd .. && ls -l ./cluster-monitoring/manifests/ && cat ./cluster-monitoring/manifests/ingress-grafana.yaml'
+                    sh 'cd ./ingress-fix/ && cp -rf * ../cluster-monitoring/manifests/ && cd ..'
                 }
             }
         }
         stage('Copy vars file') {
             steps {
                 script {
-                    echo 'Copy secrets file ...'
+                    echo 'Copy vars file ...'
                     sh 'scp -F /var/lib/jenkins/.ssh/ pi@192.168.1.142:/media/mybook/cluster-monitoring-config/vars.jsonnet ./cluster-monitoring/vars.jsonnet'
                 }
             }
@@ -43,11 +43,12 @@ pipeline {
             }
             steps {
                     echo 'Deploying using kubectl apply...'
+                    sh 'cd ./cluster-monitoring/'
                     sh 'ls -l'
-                    sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f cluster-monitoring/manifests/setup/'
-                    sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f cluster-monitoring/manifests/'
+                    sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f ./manifests/setup/'
+                    sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f ./manifests/'
                     sh 'sleep 5'
-                    sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f cluster-monitoring/manifests/'
+                    sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f ./manifests/'
             }
         }
     }
