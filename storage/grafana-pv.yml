@@ -13,8 +13,6 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   storageClassName: slow
-  mountOptions:
-    - nfsvers=4.1
   nfs:
     path: /media/pi/Elements/k8sNFS/grafana/
     server: 192.168.1.142
