@@ -44,7 +44,7 @@ pipeline {
             steps {
                     echo 'Deploying using kubectl apply...'
                     sh 'ls -l'
-                    sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f ./storage/'
+                    sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl create ns monitoring && kubectl apply -f ./storage/'
                     sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f cluster-monitoring/manifests/setup/'
                     sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f cluster-monitoring/manifests/'
                     sh 'sleep 5'
