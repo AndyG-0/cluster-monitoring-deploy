@@ -42,12 +42,15 @@ pipeline {
                 }
             }
             steps {
-                    echo 'Deploying using kubectl apply...'
                     sh 'ls -l'
-                    sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl create ns monitoring && kubectl apply -f ./storage/'
+                    echo 'Apply PVs...'
+                    sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f ./storage/'
+                    echo 'Apply Setup...'
                     sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f cluster-monitoring/manifests/setup/'
+                    echo 'Apply Manifests...'
                     sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f cluster-monitoring/manifests/'
                     sh 'sleep 5'
+                    echo 'Apply Manifests...Again in case of a race condition'
                     sh 'export KUBECONFIG=/var/lib/jenkins/config && kubectl apply -f cluster-monitoring/manifests/'
             }
         }
