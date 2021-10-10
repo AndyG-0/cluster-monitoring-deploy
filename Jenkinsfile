@@ -24,7 +24,7 @@ pipeline {
             steps {
                 script {
                     echo 'Copy vars file ...'
-                    sh 'scp -F /var/lib/jenkins/.ssh/ pi@192.168.1.142:/media/mybook/cluster-monitoring-config/vars.jsonnet ./cluster-monitoring/vars.jsonnet'
+                    sh 'scp -F /var/lib/jenkins/.ssh/ pi@192.168.1.142:/srv/dev-disk-by-uuid-0A5DD4543FDF14C4/cluster-monitoring-config/vars.jsonnet ./cluster-monitoring/vars.jsonnet'
                 }
             }
         }
