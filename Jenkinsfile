@@ -31,7 +31,7 @@ pipeline {
         stage('Execute Make') {
             steps {
                 script {
-                    sh 'cd ./cluster-monitoring/ &&  export GO111MODULE=on && go get github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb@latest && make vendor && make'
+                    sh 'cd ./cluster-monitoring/ &&  export GO111MODULE=on && go get github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb@latest && go get github.com/google/go-jsonnet/cmd/jsonnet@latest && make vendor && make'
                 }
             }
         }
