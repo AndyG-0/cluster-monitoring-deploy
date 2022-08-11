@@ -31,7 +31,7 @@ pipeline {
         stage('Execute Make') {
             steps {
                 script {
-                    sh 'cd ./cluster-monitoring/ && ls -l && GO111MODULE=on | make vendor && make'
+                    sh 'cd ./cluster-monitoring/ && ls -l && export GO111MODULE=on && make vendor && make'
                 }
             }
         }
@@ -55,9 +55,9 @@ pipeline {
             }
         }
     }
-    // post {
-    //     always {
-    //         cleanWs()
-    //     }
-    // }
+    post {
+        always {
+            cleanWs()
+        }
+    }
 }
